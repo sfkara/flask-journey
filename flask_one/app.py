@@ -71,11 +71,27 @@ def create_a_recipes():
     ),201
 @app.route('/recipe/<int:id>',methods=['GET'])
 def get_recipe(id):
-    pass
-
+    
+    recipe = Recipe.get_by_id(id)
+    serializer=RecipeSchema()
+    data=serializer.dump(recipe)
+    
+    return jsonify(
+        data
+    ),200
 @app.route('/recipe/<int:id>',methods=['PUT'])
 def update_recipe(id):
-    pass
+    recipe_to_update=Recipe.get_by_id(id)
+    data= request.get_json()
+    recipe_to_update.name = data.get('name')
+    recipe_to_update.description = data.get('description')
+    
+    db.session.commit()
+    serializer=RecipeSchema()
+    recipe_data= serializer.dump(recipe_to_update)
+    return jsonify(
+        recipe_data
+        ),200
 
 @app.route('/recipe/<int:id>',methods=['DELETE'])
 def delete_recipe(id):
