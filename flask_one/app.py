@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,jsonify
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import Schema,fields
 
@@ -41,13 +41,19 @@ class RecipeSchema(Schema):
     name= fields.String()
     description= fields.String()      
 
-@app.route('/')
-def hello():
-    return 'Hello'
+
 
 @app.route('/recipes',methods=['GET'])
 def get_all_recipes():
-    pass
+    recipes=Recipe.get_all()
+    serializer=RecipeSchema(many=True)
+    data= serializer.dump(recipes)
+    
+    return jsonify(
+        data
+    )
+    
+    
 @app.route('/recipes',methods=['POST'])
 def create_a_recipes():
     pass
