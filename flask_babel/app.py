@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask_babel import Babel, get_locale, format_date, format_datetime
+from flask_babel import Babel, get_locale, format_date, format_datetime,gettext
 from datetime import date, datetime
 
 
@@ -21,9 +21,13 @@ def index():
 
     local_date = format_date(d)
     local_datetime = format_datetime(dt, "short")
+    
+    
+    firat = gettext('Firat')
+    babylon = gettext('Babylon')
 
     return render_template(
-        "index.html", Locale=get_locale(), Local_date=local_date, Local_datetime=local_datetime)
+        "index.html", Locale=get_locale(), Local_date=local_date, Local_datetime=local_datetime,firat=firat,babylon=babylon)
 
 
 if __name__ == "__main__":
