@@ -14,6 +14,9 @@ def create_app():
     app.config['MAIL_DEFAULT_SENDER'] = 'seriffiratkara@gmail.com'
     
     
+    mail = Mail(app)
+    mail.init_app(app)
+    
     @app.route('/')
     def index():
         msg = Message('hello',recipients=['sfkara@gmail.com'])
@@ -22,5 +25,4 @@ def create_app():
         return '<h1>Sent!!!!</h1>'
     
     
-    mail = Mail()
-    mail.init_app(app)
+    return app
