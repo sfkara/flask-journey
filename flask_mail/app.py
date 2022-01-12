@@ -14,7 +14,7 @@ def create_app():
     app.config['MAIL_DEFAULT_SENDER'] = 'seriffiratkara@gmail.com'
     
     
-    mail = Mail(app)
+    mail = Mail()
     mail.init_app(app)
     
     @app.route('/')
