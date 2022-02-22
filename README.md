@@ -5,3 +5,4 @@
 
 1. Flask REST API with marshmellow and postgres
 2. Flask-Babel date and translation
+3. Flask-Mail (Bulk mail)
